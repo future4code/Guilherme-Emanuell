@@ -26,11 +26,41 @@ a:hover {
 
 /* Home */
 
-h2 {
+#texto-home {
+    text-align: center;
+    margin: auto;
+    padding: 50px;
+}
+
+h1, h2 {
     text-align: center;
     padding: 20px;
     color: #03045E;
 }
+
+/* Controle de Estoque */
+
+.produtos-disponiveis {
+    margin: auto;
+}
+
+.descricao-produtos {
+    margin: auto;
+}
+
+.produto {
+    margin: auto;
+}
+
+.desc-produto, .preco-produto, .qnt-produto {
+    text-align: center;
+    padding: 0 35px;;
+}
+
+.img-produtos {
+    max-width: 150px;
+}
+
 
 /* Add Produtos */
 
@@ -49,8 +79,21 @@ h2 {
 #box-footer {
     display: block;
     position: fixed;
-    bottom: 0;
+    bottom: 0px;
+    left: 0;
     width: 100%;
+}
+
+#box-footer-relative {
+    display: block;
+    position: relative;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+}
+
+.text-footer, .img-socialmedia {
+    display: inline;
 }
 
 #redes-sociais {

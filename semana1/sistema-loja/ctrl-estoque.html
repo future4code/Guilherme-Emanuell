@@ -5,68 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dular - Controle de Estoque</title>
+    <link rel="stylesheet"  type="text/css" href="style.css"
 </head>
 <body>
-    <div>
-        <p>Dular</p>
-    </div>
-    
-    <div>
-        <a href="index.html">Página Inicial</a>
-        <a href="ctrl-estoque.html">Controle de Estoque</a>
-        <a href="add-produto.html">Adicionar Produto</a>
-        <a href="funcionarios.html">Funcionários</a>
-    </div>
+    <header>
+        <div class="navbar">
+            <a href="index.html">Página Inicial</a>
+            <a href="ctrl-estoque.html">Controle de Estoque</a>
+            <a href="add-produto.html">Adicionar Produto</a>
+            <a href="funcionarios.html">Funcionários</a>
+        </div>
+    </header>
 
     <h2>Controle de Estoque</h2>
 
-    <table>
-        <tr>
+    <table class="produtos-disponiveis">
+        <tr class="descricao-produtos">
             <th>Foto</th>
             <th>Descrição</th>
             <th>Preço (R$)</th>
             <th>Quantidade disponível</th>
         </tr>
 
-        <tr>
-            <td><img src="./img/vassoura.jpg" alt="Vassoura"/></td>
-            <td> Vassoura </td>
-            <td> R$10,00 </td>
-            <td> 100 </td>
+        <tr class="produto">
+            <td><img src="./img/vassoura.jpg" class="img-produtos" alt="Vassoura"/></td>
+            <td class="desc-produto"> Vassoura </td>
+            <td class="preco-produto"> R$10,00 </td>
+            <td class="qnt-produto"> 100 </td>
         </tr>
 
-        <tr>
-            <td><img src="./img/rodo.jpg" alt="Rodo"/></td>
-            <td> Rodo </td>
-            <td> R$25,99 </td>
-            <td> 75 </td>
+        <tr class="produto">
+            <td><img src="./img/rodo.jpg" class="img-produtos" alt="Rodo"/></td>
+            <td class="desc-produto"> Rodo </td>
+            <td class="preco-produto"> R$25,99 </td>
+            <td class="qnt-produto"> 75 </td>
         </tr>
 
-        <tr>
-            <td><img src="./img/mop.jpg" alt="MOP"/></td>
-            <td> MOP </td>
-            <td> R$59,90 </td>
-            <td> 64 </td>
+        <tr class="produto">
+            <td><img src="./img/mop.jpg" class="img-produtos" alt="MOP"/></td>
+            <td class="desc-produto"> MOP </td>
+            <td class="preco-produto"> R$59,90 </td>
+            <td class="qnt-produto"> 64 </td>
         </tr>
 
-        <tr>
-            <td><img src="./img/roomba.jpg" alt="Roomba"/></td>
-            <td> Roomba </td>
-            <td> R$3.500,00 </td>
-            <td> 23 </td>
+        <tr class="produto">
+            <td><img src="./img/roomba.jpg" class="img-produtos" alt="Roomba"/></td>
+            <td class="desc-produto"> Roomba </td>
+            <td class="preco-produto"> R$3.500,00 </td>
+            <td class="qnt-produto"> 23 </td>
         </tr>
         
         <!-- Crie mais uma linha desta tabela abaixo \/ -->
 
-        <tr>
-            <td><img src="./img/harry.jpg" alt="Vassoura Harry"/></td>
-            <td> Vassoura Mágica </td>
-            <td> R$22.500,00 </td>
-            <td> 01 </td>
+        <tr class="produto">
+            <td><img src="./img/harry.jpg" class="img-produtos" alt="Vassoura Harry"/></td>
+            <td class="desc-produto"> Vassoura Mágica </td>
+            <td class="preco-produto"> R$22.500,00 </td>
+            <td class="qnt-produto"> 01 </td>
         </tr>
 
 
     </table>
+
+    <footer id="box-footer-relative">
+        <div id="redes-sociais">
+            <p class="text-footer">Siga-nos nas redes sociais!</p>
+            <a href="https://www.instagram.com/gui_emanuell" target="blank"><img src="https://image.flaticon.com/icons/png/512/25/25305.png" class="img-socialmedia"/></a>
+            <a href="https://www.instagram.com/gui_emanuell" target="blank"><img src="https://image.flaticon.com/icons/png/512/25/25425.png" class="img-socialmedia"/></a>
+            <a href="https://www.instagram.com/gui_emanuell" target="blank"><img src="https://image.flaticon.com/icons/png/512/8/8800.png" class="img-socialmedia"/></a>
+        </div>
+        </footer>
 
 </body>
 </html>

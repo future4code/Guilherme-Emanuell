@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* Cabeçalho */
+.navbar {
+    display: block;
+    background-color: #03045E;
+    text-align: center;
+    padding: 15px 20px;
+    
+}
+
+a {
+    color: #CAF0F8;
+    font-size: 16px;
+    padding: 20px;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #00B4D8;
+}
+
+/* Home */
+
+#texto-home {
+    text-align: center;
+    margin: auto;
+    padding: 50px;
+}
+
+h1, h2 {
+    text-align: center;
+    padding: 20px;
+    color: #03045E;
+}
+
+/* Controle de Estoque */
+
+.produtos-disponiveis {
+    margin: auto;
+}
+
+.descricao-produtos {
+    margin: auto;
+}
+
+.produto {
+    margin: auto;
+}
+
+.desc-produto, .preco-produto, .qnt-produto {
+    text-align: center;
+    padding: 0 35px;;
+}
+
+.img-produtos {
+    max-width: 150px;
+}
+
+
+/* Add Produtos */
+
+#link-foto, #descricao, #preco, #quantidade {
+    font-weight: bold;
+}
+
+#botao-enviar {
+    color:  #03045E;
+    padding: 5px 20px;
+}
+
+
+/* Rodapé */
+
+#box-footer {
+    display: block;
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+}
+
+#box-footer-relative {
+    display: block;
+    position: relative;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+}
+
+.text-footer, .img-socialmedia {
+    display: inline;
+}
+
+#redes-sociais {
+    text-align: center;
+    background-color: #eaeaea;
+    padding: 30px;
+}
+
+/* Imagens */
+
+.img-socialmedia {
+    max-width: 20px;
+}

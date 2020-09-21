@@ -116,6 +116,14 @@ td button {
     color: black;
 }
 
+.botao-trocar-cor:hover {
+    background-color: #7c6500;
+}
+
+.botao-trocar-cor:active {
+    color: #ffffff;
+}
+
 .container-do-search {
     margin-top: 20px;
     height: 100px;

@@ -48,10 +48,12 @@ div img {
     border-radius: 5px;
     font-size: 20px;
     color: white;
+    outline: none;
 }
 
 .botao-amarelo:hover {
     background-color: #c44f00;
+    outline: none;
 }
 
 .container {
@@ -62,8 +64,14 @@ div img {
 .icone {
     height: 20px;
     width: 20px;
-    
-    
+}
+
+.icone:hover {
+    opacity: 0.5;
+}
+
+.icone:active {
+    opacity: 1;
 }
 
 
@@ -133,6 +141,7 @@ td button {
 .container-do-search {
     margin-top: 20px;
     height: 100px;
+    outline: none;
 }
 
 .borda-campo-texto {
@@ -142,6 +151,10 @@ td button {
     border-bottom: 2px solid black;
 }
 
+#botao-voltar {
+    text-align: center;
+    margin-top: 150px;
+}
 
 #back-button {
     background-color: white;

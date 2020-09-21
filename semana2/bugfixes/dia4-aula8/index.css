@@ -93,6 +93,11 @@ div img {
     font-size: 60px;
 }
 
+.lista-numerada-alinhada {
+    text-align: center;
+    display: inline-block;
+}
+
 
 /**
   *

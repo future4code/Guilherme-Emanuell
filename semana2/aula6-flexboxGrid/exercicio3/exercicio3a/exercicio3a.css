@@ -3,39 +3,67 @@ body {
     height: 100vh;
     padding: 0;
     margin: 0;
-    font-size: 10px;
+    font-size: 18px;
     color: white;
 }
 
 #top-container {
     display: flex;
+   
 }
 
 .green-background {
     background-color: green;
+    width: 30vw;
+    height: 65px;
 }
 
 .yellow-background {
     background-color: yellow;
+    width: 70vw;
+    height: 65px;
+    width: 100vw;
 }
 
 .pink-background {
     background-color: fuchsia;
+    height: 615px;
+}
+
+#middle-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
 }
 
 .blue-background {
     background-color: blue;
+    height: 250px;
+    width: 50vw;
+    
+}
+
+#vertical-middle-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .red-background {
     background-color: red;
+    height: 125px;
+    width: 25vw;
 }
 
 .lightgreen-background {
     background-color: lightgreen;
+    height: 125px;
+    width: 25vw;
 }
 
 .purple-background {
     background-color: purple;
-    align-self: flex-end;
+    height: 65px;
+    align-items: flex-end;
+    width: 100vw;
+   
 }

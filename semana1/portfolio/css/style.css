@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/* Body */
+
+
+/* Cabeçalho */
+.navbar {
+    display: block;
+    background-color: #F9FAFD;
+    text-align: center;
+    padding: 15px 20px;
+    
+}
+
+a {
+    color: #00B4D8;
+    font-size: 16px;
+    padding: 20px;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #0077B6;
+}
+
+/* Home */
+
+#descritivo {
+    background-color: #F9FAFD;
+}
+
+.texto-descritivo {
+    padding: 0px 200px 0px 0px;
+}
+
+.desc-home {
+    margin: auto;
+    padding: 150px 150px 75px 150px;
+    background-size: 100%;
+}
+
+#galeria-projetos {
+    margin: auto;
+    padding: 0px 150px 75px;
+    background-color: #white;
+}
+
+#habilidade {
+    background-color: #F9FAFD;
+}
+
+#habilidades-conhecimentos {
+    margin: auto;
+    padding: 0px 150px 75px;
+}
+
+
+#texto-home {
+    text-align: center;
+    margin: auto;
+    padding: 50px;
+}
+
+#contato {
+    margin: auto;
+    padding: 0px 150px 75px;
+    background-color: #white;
+}
+
+h1, h2 {
+    text-align: center;
+    padding: 20px;
+    color: #03045E;
+}
+
+h1.titulos-div {
+    padding: 100px;
+}
+
+#projetos {
+    margin: auto;
+}
+
+.img-html, .img-js, .img-css, .img-react {
+    max-width: 100px;
+    padding: 0 30px 25px;
+}
+
+.img-processo-sel-labebu, .img-finans, .img-chale-hotel {
+    max-width: 400px;
+    padding: 0 30px 25px;
+}
+
+
+/* Add Produtos */
+
+#link-foto, #descricao, #preco, #quantidade {
+    font-weight: bold;
+}
+
+#botao-enviar {
+    color:  #03045E;
+    padding: 5px 20px;
+}
+
+
+/* Rodapé */
+
+#box-footer {
+    display: block;
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+}
+
+#box-footer-relative {
+    display: block;
+    position: relative;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+}
+
+.text-footer, .img-socialmedia {
+    display: inline;
+}
+
+#redes-sociais {
+    text-align: center;
+    background-color: #f9fafd;
+    padding: 30px;
+}
+
+/* Imagens */
+
+.img-socialmedia {
+    max-width: 20px;
+}

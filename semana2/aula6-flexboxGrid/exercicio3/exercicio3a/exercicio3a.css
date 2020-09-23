@@ -16,6 +16,9 @@ body {
     background-color: green;
     width: 30vw;
     height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .yellow-background {
@@ -23,16 +26,21 @@ body {
     width: 70vw;
     height: 65px;
     width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .pink-background {
     background-color: fuchsia;
     height: 615px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #middle-container {
     display: flex;
-    flex-wrap: nowrap;
     justify-content: space-between;
 }
 
@@ -40,7 +48,9 @@ body {
     background-color: blue;
     height: 250px;
     width: 50vw;
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #vertical-middle-container {
@@ -52,12 +62,18 @@ body {
     background-color: red;
     height: 125px;
     width: 25vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .lightgreen-background {
     background-color: lightgreen;
     height: 125px;
     width: 25vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .purple-background {
@@ -65,5 +81,7 @@ body {
     height: 65px;
     align-items: flex-end;
     width: 100vw;
-   
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -89,3 +89,53 @@ div {
     margin: 10px;
 }
 
+@media only screen and (max-width: 600px) {
+.blue-block, .yellow-block, .green-block, .black-block, .white-block, .white-block-res {
+    width: 95vw;
+    margin: 10px;
+}
+}
+
+@media only screen and (min-width: 601px) {
+.blue-block, .yellow-block, .black-block, .white-block {
+    width: 46vw;
+    margin: 10px;
+}
+
+.green-block, .white-block-res {
+    width: 95vw;
+    margin: 10px;
+}
+}
+
+@media only screen and (min-width: 1200px) {
+    .blue-block {
+        width: 32vw;
+        margin: 10px;
+    }
+    
+    .yellow-block {
+        width: 32vw;
+        margin: 10px;
+    }
+    
+    .green-block {
+        width: 32vw;
+        margin: 10px;
+    }
+    
+    .black-block {
+        width: 48.6vw;
+        margin: 10px;
+    }
+    
+    .white-block {
+        width: 32vw;
+        margin: 10px;
+    }
+    
+    .white-block-res {
+        width: 32vw;
+        margin: 10px;
+    }
+}

@@ -1,0 +1,78 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+header {
+    display: flex;
+    align-items: center;
+    position: fixed;
+}
+
+nav {
+    display: flex;
+    width: 100vw;
+    height: 8vh;
+    position: fixed;
+    top: 0;
+    text-align: center;
+    align-items: center;
+    font-size: 20px;
+    padding: 0px 15px;
+    color: #111111;
+    background-color: orange;
+    border: 2px;
+}
+
+header.p {
+    margin: 0 50px;
+}
+
+ul {
+    list-style: none;
+}
+
+.logo-f4bank {
+    height: 60px;    
+}
+
+button {
+    padding-left: 25px;
+    padding-right: 25px;
+    border: 0px;
+    border-radius: 20px;
+    background: #ffbd59;
+    color: white;
+    cursor: pointer;
+    height: 45px;   
+}
+
+button:hover {
+    background: #e6732c;
+}
+
+footer {
+    display: flex;
+    width: 100vw;
+    height: 8vh;
+    position: fixed;
+    bottom: 0;
+    font-size: 20px;
+    padding: 0 15px;
+    color: black;
+    background-color: #FFAA00;    
+}
+
+.social {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
+}
+
+.img-socialmedia {
+    max-width: 32px;
+    padding: 0 15px;
+    
+}

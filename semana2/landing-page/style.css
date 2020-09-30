@@ -1,0 +1,428 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Secular One', sans-serif;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+nav {
+    display: flex;
+    width: 100vw;
+    height: 8vh;
+    position: fixed;
+    top: 0;
+    text-align: center;
+    align-items: center;
+    background-color: orange;
+    
+}
+
+.logo-f4bank {
+    height: 60px;
+    padding: 0 1vw;    
+}
+
+ul {
+    list-style-type: none;
+}
+
+.nav-list {
+    display: flex;
+    width: 47vw;
+    
+}
+
+.nav-link {
+    list-style: none;
+    color: white;
+    padding: 0 2vw;
+}
+
+.nav-link-home {
+    list-style: none;
+    color: white;
+    padding: 0 2vw;
+    font-weight: bold
+}
+
+.nav-link-home:hover {
+    color: #e6732c;
+}
+.nav-link:hover {
+    color: #e6732c;
+}
+
+.nav-button {
+    display: flex;
+    width: 47vw;
+    justify-content: flex-end;
+    padding: 0 3vw;
+}
+
+button {
+    font-size: 1em;
+    padding-left: 25px;
+    padding-right: 25px;
+    border: 0px;
+    border-radius: 20px;
+    background: #ffbd59;
+    color: white;
+    cursor: pointer;
+    height: 45px;  
+    font-weight: bold;
+    
+}
+
+button:hover {
+    background: #e6732c;
+}
+
+
+
+/* Geral Sessão */
+
+section{
+    width: 100vw;
+    display: flex;
+    color: #111111;
+}
+
+h1, h2 {
+    margin: 1em;
+    font-size: 2rem;
+}
+
+
+/* Sessão Cartão Sem taxa */
+
+.cartao-sem-taxa {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.sem-taxa-texto {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 50vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.sem-taxa-img {
+    display: flex;
+    width: 50vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-sem-taxa {
+    width: 60%;
+}
+
+.button-sem-taxa {
+    margin: 2em;
+}
+
+
+/* Sessão Conta Digital */
+
+.conta-digital {
+    width: 100vw;
+    height: 100vh;
+    background: #ffbd59;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.conta-digital-texto {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 50vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.conta-digital-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.img-conta-digital {
+    width: 50%;
+}
+
+button.digital {
+    font-size: 1em;
+    padding-left: 25px;
+    padding-right: 25px;
+    border: 0px;
+    border-radius: 20px;
+    background: white;
+    color: orange;
+    cursor: pointer;
+    height: 45px;  
+    font-weight: bold;
+    
+}
+
+button.digital:hover {
+    background: #e6732c;
+    color: white;
+}
+
+.digital {
+    margin: 2em;
+}
+
+
+
+/*  Footer  */
+
+footer {
+    display: flex;
+    width: 100vw;
+    height: 8vh;
+    bottom: 0;
+    font-size: 16px;
+    color: white;
+    background-color: #FFAA00;    
+}
+
+.social {
+    display: flex;
+    width: 50vw;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 2vw;
+    
+}
+
+.social-img {
+    display: flex;
+    width: 50vw;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 2vw;
+}
+
+
+.img-socialmedia {
+    width: 2vw;
+    padding: 0 2vw;
+    
+}
+
+/*  Responsividade  */
+
+@media only screen and (max-width: 375px) {
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Secular One', sans-serif;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+
+
+
+nav {
+    display: flex;
+    width: 100vw;
+    height: 8vh;
+    position: relative;
+    top: 0;    
+}
+
+.navbar {
+    display: flex;
+    
+}
+
+.logo-f4bank {
+    height: 40px;
+    padding: 0 1vw;    
+}
+
+ul {
+    list-style-type: none;
+}
+
+
+.nav-list {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    
+}
+
+button.botao-cabecalho {
+    display: none;    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Geral Sessão */
+
+h1, h2 {
+    margin: 1em;
+    font-size: 3rem;
+}
+
+p {
+    font-size: 2rem;
+}
+
+p.paragrafo-pe {
+    font-size: 14px;
+}
+
+
+
+/* Sessão Cartão Sem taxa */
+
+.cartao-sem-taxa {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sem-taxa-texto {
+    display: flex;
+    height: 60vh;
+    width: 100vw;
+    text-align: center;
+}
+
+.button-sem-taxa {
+    margin: 1em;
+}
+
+.sem-taxa-img {
+    display: flex;
+    width: 100vw;
+    height: 20vh;    
+    width: 250%;
+}
+
+/* Sessão Conta Digital */
+
+.conta-digital {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.conta-digital-texto {
+    display: flex;
+    height: 50vh;
+    width: 100vw;
+    text-align: center;
+}
+
+.conta-digital-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-conta-digital {
+    width: 50%;
+}
+
+button.digital {
+    height: 70px;  
+}
+
+
+/*  Footer  */
+
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    height: 20vh;
+    bottom: 0;
+    
+}
+
+.social {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    text-align: center;
+    justify-content: center;
+    
+}
+
+.social-img {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    
+}
+
+
+.img-socialmedia {
+    width: 7vw;
+    padding: 0 3vw;
+}
+
+}

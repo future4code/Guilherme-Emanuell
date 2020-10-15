@@ -1,8 +1,13 @@
 import React from 'react';
 import './App.css';
 import CardGrande from './components/CardGrande/CardGrande';
+import CardPequeno from './components/CardPequeno/CardPequeno';
 import ImagemButton from './components/ImagemButton/ImagemButton';
 import avatar from './img/avatar-guilhermee.png';
+import labenu from './img/labenu.png';
+import assoweb from './img/assoweb.png';
+import email from './img/mail.png';
+import location from './img/location.png';
 
 function App() {
   return (
@@ -20,19 +25,36 @@ function App() {
           texto="Ver mais"
         />
       </div>
+      
+      <div className="page-section-container">
+      <CardPequeno 
+          imagem={email} 
+          nome="Email: &nbsp;" 
+          descricao=" britodg@gmail.com"
+        />      
+      </div>
 
       <div className="page-section-container">
-        <h2>Experiências profissionais</h2>
+      <CardPequeno 
+          imagem={location} 
+          nome="Endereço: &nbsp;" 
+          descricao=" Rua Um Dois Três Quatro, # cinco"
+        />      
+      </div>
+
+      <div className="page-section-container">
+        <h2>Formação Acadêmica</h2>
         <CardGrande 
-          imagem="https://s3.amazonaws.com/future4.com.br/static/headf4-c492117ca2373dc85ca81bf715b3dc2a.png" 
+          imagem={labenu} 
           nome="Labenu" 
           descricao="Formando desenvolvedores para o mercado de trabalho!" 
         />
         
+        <h2>Experiências profissionais</h2>
         <CardGrande 
-          imagem="https://imagens.canaltech.com.br/empresas/4418.400.jpg" 
-          nome="NASA" 
-          descricao="Tester de aplicações." 
+          imagem={assoweb}
+          nome="Assoweb" 
+          descricao="Especialista em Inbound Marketing" 
         />
       </div>
 

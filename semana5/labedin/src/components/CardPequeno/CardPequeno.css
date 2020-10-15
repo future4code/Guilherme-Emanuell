@@ -1,24 +1,24 @@
-.bigcard-container {
+.smallcard-container {
     display: flex;
     align-items: center;
     border: 1px solid black;
     padding: 20px 10px;
     margin-bottom: 10px;
-    height: 150px;
+    height: 100px;
 }
 
-.bigcard-container > img {
+.smallcard-container > img {
     width: 70px;
     margin-right: 10px;
     border-radius: 50%;
 }
 
-.bigcard-container h4 {
+.smallcard-container h4 {
     margin-bottom: 15px;
 }
 
-.bigcard-container > div {
+.smallcard-container > div {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-items: flex-start;
 }

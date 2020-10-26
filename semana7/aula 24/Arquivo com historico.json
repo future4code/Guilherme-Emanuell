@@ -1,0 +1,3287 @@
+{
+	"info": {
+		"_postman_id": "bd4ec8b7-4aa0-4d2f-b6c9-29a269f4a871",
+		"name": "Semana 7 - Aula 24",
+		"description": "## Descrição\n</br>Esta API gerencia playlists e músicas.\n```\n\tFeito pela Labenu. Todos os direitos reservados\n```\n\n## Instruções gerais.\n\n**Autenticação**\n\nToda requisição deve ter uma identificação de quem está fazendo a requisição. Ela deve ser enviada por meio do header `Authorization`, da seguinte forma:\n\n`Authorization: \"nome-sobrenome-turma\"`\n\nPor exemplo, se meu nome é Bob Marley e eu sou da turma Newton, o header deve ser:\n\n`Authorization: \"bob-marley-newton\"`",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getAllPlaylists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				},
+				"description": "### Descrição:\nEsta requisição serve para ver o `id` e o `name` de todas as suas playlists.\n\n### Input:\n**Headers**\n<br/>`Authorization`: token de autenticação da API\n```\n\tAuthorization: \"nome-sobrenome-turma\"\n```\n### Output:\n**Body**\n<br/>`quantity`: quantitdade de playlists\n<br/>`list`: lista com as playlists\n<br/> `id`: id de cada playlist\n<br/> `name`: nome de cada playlist\n\n```\n{\n    \"result\": {\n        \"quantity\": \"number\",\n        \"list\": [\n            {\n                \"id\": \"string\",\n                \"name\": \"string\"\n            }\n        ]\n    }\n}\n```\n"
+			},
+			"response": []
+		},
+		{
+			"name": "searchPlaylist",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=Tudo Junto",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Tudo Junto"
+						}
+					]
+				},
+				"description": "### Descrição:\nEssa requisição parmite pesquisar por uma playlist, usando o nome dela ou parte dele.\n\n### Input:\n**Headers**\n<br/>`Authorization`: token de autenticação da API\n```\n\tAuthorization: \"nome-sobrenome-turma\"\n```\n\n**Query String**\n<br/> `name`: nome da playlist ou parte dele (obrigatório)\n```\n\tname:\"string\" \n```\n\n### Output:\n**Body**\n<br/> `quantity`: quantidade de playlists encontradas\n<br/> `list`: array com as playlists\n<br/> `id`: id de cada playlist\n<br/> `name`: nome de cada playlist\n```\n{\n    \"result\": {\n    \t\"quantity\": \"number\", \n        \"list\": [\n            {\n                \"id\": \"string\", \n                \"name\": \"string\" \n            }\n        ]\n    }\n}\n```\n\n\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "getPlaylistTracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bb8707c3-5daf-47db-97b6-a1d82bbc4593/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bb8707c3-5daf-47db-97b6-a1d82bbc4593",
+						"tracks"
+					]
+				},
+				"description": "### Descrição:\nEsta requisição permite verificar quais músicas estão em uma determinada playlist\n\n### Input:\n**Headers**\n<br/>`Authorization`: token de autenticação da API\n```\n\tAuthorization: \"nome-sobrenome-turma\"\n```\n\n**Path Param**\n<br/>`playlistId`: id da playlist (obrigatório)\n\n### Output:\n**Body**\n<br/> `quantity`: quantidade de músicas da playlist\n<br/> `tracks`: array com as informações das músicas\n<br/> `id`: id de cada música\n<br/> `name`: nome de cada música\n<br/> `artist`: cantor ou band da música\n<br/>`url`: URL da música para ser tocada\n```\n{\n    \"result\": {\n        \"quantity\": \"number\",\n        \"tracks\": [ \n            {\n                \"id\": \"string\", \n                \"name\": \"string\", \n                \"artist\": \"string\",\n                \"url\": \"string\"\n            }\n        ]\n    }\n}\n```\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "createPlaylist",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Ela <3\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				},
+				"description": "### Descrição:\nEssa requisição cria uma nova playlist. \n\n### Input:\n**Headers**\n<br/>`Authorization`: token de autenticação da API\n```\n\tAuthorization: \"nome-sobrenome-turma\"\n```\n**Body**\n<br/>`name`: nome da playlist (obrigatório)\n```\n{\n\t\"name\": \"string\" \n}\n```"
+			},
+			"response": [
+				{
+					"name": "createPlaylist",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "auth",
+								"value": "authentication-token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"playlist-name\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/playlists/createPlaylist",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"playlists",
+								"createPlaylist"
+							]
+						}
+					},
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "addTrackToPlaylist",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Tutu\",\n\t\"artist\": \"Camilo\",\n\t\"url\": \"https://open.spotify.com/track/1nocRtwyNPVtGcIJqfgdzZ\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bb8707c3-5daf-47db-97b6-a1d82bbc4593/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bb8707c3-5daf-47db-97b6-a1d82bbc4593",
+						"tracks"
+					]
+				},
+				"description": "### Descrição:\nEssa requisição adiciona uma música a uma playlist existente\n\n### Input:\n**Headers**\n<br/>`Authorization`: token de autenticação da API\n```\n\tAuthorization: \"nome-sobrenome-turma\"\n```\n\n**Path Param**\n<br/>`playlistId`: id da playlist (obrigatório)\n\n**Body**\n<br/>`name`: nome da música (obrigatório)\n<br/>`artist`: cantor ou banda da música (obrigatório)\n<br/>`url`: URL da música para ser tocada (obrigatório)\n```\n{\n\t\"name\": \"string\", \n\t\"artist\": \"string\",\n\t\"url\": \"string\"\n}\n```\n\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "deletePlaylist",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						":playlistId"
+					],
+					"variable": [
+						{
+							"key": "playlistId",
+							"value": "b7f90fc9-78b5-442b-ad35-5e46e4667866"
+						}
+					]
+				},
+				"description": "### Descrição:\nEsta requisição serve para deletar alguma playlist.\n\n### Input:\n**Headers**\n<br/>`Authorization`: token de autenticação da API\n```\n\tAuthorization: \"nome-sobrenome-turma\"\n```\n\n**Path Param**\n<br/>`playlistId`: id da playlist (obrigatório)\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "removeTrackFromPlaylist",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId/tracks/:trackId",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						":playlistId",
+						"tracks",
+						":trackId"
+					],
+					"variable": [
+						{
+							"key": "playlistId",
+							"value": "6f7241af-344c-45f2-878b-32bbc49cba9f"
+						},
+						{
+							"key": "trackId",
+							"value": "cd6a3e78-7c12-42b1-95c5-103b1df8d3f0"
+						}
+					]
+				},
+				"description": "### Descrição:\nEsta requisição serve para deletar alguma música de alguma playlist\n\n### Input:\n**Headers**\n<br/>`Authorization`: token de autenticação da API\n```\n\tAuthorization: \"nome-sobrenome-turma\"\n```\n\n**Path Params**\n<br/>`playlistId`: id da playlist (obrigatório)\n<br/>`trackId`: id da música (obrigatório)\n"
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bb8707c3-5daf-47db-97b6-a1d82bbc4593/tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bb8707c3-5daf-47db-97b6-a1d82bbc4593/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bb8707c3-5daf-47db-97b6-a1d82bbc4593",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=Tudo Junto",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=Tudo Junto",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Tudo Junto"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bb8707c3-5daf-47db-97b6-a1d82bbc4593/tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bb8707c3-5daf-47db-97b6-a1d82bbc4593/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bb8707c3-5daf-47db-97b6-a1d82bbc4593",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bb8707c3-5daf-47db-97b6-a1d82bbc4593/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Tutu\",\n\t\"artist\": \"Camilo\",\n\t\"url\": \"https://open.spotify.com/track/1nocRtwyNPVtGcIJqfgdzZ\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bb8707c3-5daf-47db-97b6-a1d82bbc4593/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bb8707c3-5daf-47db-97b6-a1d82bbc4593",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Ela <3\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/b7e10f0a-f452-400d-8129-06b547ada6b8/tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/b7e10f0a-f452-400d-8129-06b547ada6b8/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"b7e10f0a-f452-400d-8129-06b547ada6b8",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/b7e10f0a-f452-400d-8129-06b547ada6b8/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"High Hopes\",\n\t\"artist\": \"Panic! At The Disco\",\n\t\"url\": \"https://open.spotify.com/track/1rqqCSm0Qe4I9rUvWncaom\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/b7e10f0a-f452-400d-8129-06b547ada6b8/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"b7e10f0a-f452-400d-8129-06b547ada6b8",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Para lembrar\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/6f7241af-344c-45f2-878b-32bbc49cba9f/tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/6f7241af-344c-45f2-878b-32bbc49cba9f/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"6f7241af-344c-45f2-878b-32bbc49cba9f",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId/tracks/:trackId",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId/tracks/:trackId",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						":playlistId",
+						"tracks",
+						":trackId"
+					],
+					"variable": [
+						{
+							"key": "playlistId",
+							"value": "6f7241af-344c-45f2-878b-32bbc49cba9f"
+						},
+						{
+							"key": "trackId",
+							"value": "cd6a3e78-7c12-42b1-95c5-103b1df8d3f0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/6f7241af-344c-45f2-878b-32bbc49cba9f/tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/6f7241af-344c-45f2-878b-32bbc49cba9f/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"6f7241af-344c-45f2-878b-32bbc49cba9f",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/6f7241af-344c-45f2-878b-32bbc49cba9f/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Hey DJ\",\n\t\"artist\": \"CNCO\",\n\t\"url\": \"https://open.spotify.com/track/1XgpK29CGGjZnxPYkiRbh4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/6f7241af-344c-45f2-878b-32bbc49cba9f/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"6f7241af-344c-45f2-878b-32bbc49cba9f",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/6f7241af-344c-45f2-878b-32bbc49cba9f/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"No Encuentro Palabras\",\n\t\"artist\": \"Abraham Mateo, Manuel Turizo\",\n\t\"url\": \"https://open.spotify.com/track/5NJSLryp5WviTmppF33Peg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/6f7241af-344c-45f2-878b-32bbc49cba9f/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"6f7241af-344c-45f2-878b-32bbc49cba9f",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/6f7241af-344c-45f2-878b-32bbc49cba9f/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Pa Que Me Invitan\",\n\t\"artist\": \"Jencarlos\",\n\t\"url\": \"https://open.spotify.com/track/2VRssqds7rRNb4eaG9FaY8\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/6f7241af-344c-45f2-878b-32bbc49cba9f/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"6f7241af-344c-45f2-878b-32bbc49cba9f",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Tudo Junto\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						":playlistId"
+					],
+					"variable": [
+						{
+							"key": "playlistId",
+							"value": "b7f90fc9-78b5-442b-ad35-5e46e4667866"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						":playlistId"
+					],
+					"variable": [
+						{
+							"key": "playlistId",
+							"value": "f5654b2f-1150-43b4-8eb4-c6df35ae4c97"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						":playlistId"
+					],
+					"variable": [
+						{
+							"key": "playlistId",
+							"value": "bc551c99-9100-4b77-af33-9c60b8408597"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						":playlistId"
+					],
+					"variable": [
+						{
+							"key": "playlistId",
+							"value": "297e4624-1a38-466f-9194-caf8e0a36aa8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/b7f90fc9-78b5-442b-ad35-5e46e4667866/tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/b7f90fc9-78b5-442b-ad35-5e46e4667866/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"b7f90fc9-78b5-442b-ad35-5e46e4667866",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/f5654b2f-1150-43b4-8eb4-c6df35ae4c97/tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/f5654b2f-1150-43b4-8eb4-c6df35ae4c97/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"f5654b2f-1150-43b4-8eb4-c6df35ae4c97",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Hey DJ\",\n\t\"artist\": \"CNCO\",\n\t\"url\": \"https://open.spotify.com/track/1XgpK29CGGjZnxPYkiRbh4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Pa Que Me Invitan\",\n\t\"artist\": \"Jencarlos\",\n\t\"url\": \"https://open.spotify.com/track/2VRssqds7rRNb4eaG9FaY8\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId/tracks/:trackId",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId/tracks/:trackId",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						":playlistId",
+						"tracks",
+						":trackId"
+					],
+					"variable": [
+						{
+							"key": "playlistId",
+							"value": "bc551c99-9100-4b77-af33-9c60b8408597"
+						},
+						{
+							"key": "trackId",
+							"value": "651b53d9-1866-461f-ab6e-116324a06c11"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Inolvidable\",\n\t\"artist\": \"Ovy On The Drums\",\n\t\"url\": \"https://open.spotify.com/track/0OTtnwUO8natNWSwdZvXVF\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/b7f90fc9-78b5-442b-ad35-5e46e4667866/tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/b7f90fc9-78b5-442b-ad35-5e46e4667866/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"b7f90fc9-78b5-442b-ad35-5e46e4667866",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/f5654b2f-1150-43b4-8eb4-c6df35ae4c97/tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/f5654b2f-1150-43b4-8eb4-c6df35ae4c97/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"f5654b2f-1150-43b4-8eb4-c6df35ae4c97",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Criminal\",\n\t\"artist\": \"Natti Natasha\",\n\t\"url\": \"https://open.spotify.com/track/6Za3190Sbw39BBC77WSS1C\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Tutu\",\n\t\"artist\": \"Camilo\",\n\t\"url\": \"https://open.spotify.com/track/1nocRtwyNPVtGcIJqfgdzZ\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=reggaeton",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=reggaeton",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "reggaeton"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/f5654b2f-1150-43b4-8eb4-c6df35ae4c97/tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/f5654b2f-1150-43b4-8eb4-c6df35ae4c97/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"f5654b2f-1150-43b4-8eb4-c6df35ae4c97",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/f5654b2f-1150-43b4-8eb4-c6df35ae4c97/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Work\",\n\t\"artist\": \"Rihanna\",\n\t\"url\": \"https://open.spotify.com/track/5lnsCyEKWofnC00U4Ax0ti\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/f5654b2f-1150-43b4-8eb4-c6df35ae4c97/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"f5654b2f-1150-43b4-8eb4-c6df35ae4c97",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/f5654b2f-1150-43b4-8eb4-c6df35ae4c97/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Bang Bang\",\n\t\"artist\": \"Jessie J, Ariana Grande\",\n\t\"url\": \"https://open.spotify.com/track/3SaIsrEzrQGDcG1jCeaK8q\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/f5654b2f-1150-43b4-8eb4-c6df35ae4c97/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"f5654b2f-1150-43b4-8eb4-c6df35ae4c97",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/f5654b2f-1150-43b4-8eb4-c6df35ae4c97/tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/f5654b2f-1150-43b4-8eb4-c6df35ae4c97/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"f5654b2f-1150-43b4-8eb4-c6df35ae4c97",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=reggaeton",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=reggaeton",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "reggaeton"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"No Encuentro Palabras\",\n\t\"artist\": \"Abraham Mateo, Manuel Turizo\",\n\t\"url\": \"https://open.spotify.com/track/5NJSLryp5WviTmppF33Peg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Tusa\",\n\t\"artist\": \"Karol G\",\n\t\"url\": \"https://open.spotify.com/track/7k4t7uLgtOxPwTpFmtJNTY\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Tusa\",\n\t\"artist\": \"Karol G\",\n\t\"url\": \"https://open.spotify.com/track/7k4t7uLgtOxPwTpFmtJNTY\",\n\n    \"name\": \"No Encuentro Palabras\",\n\t\"artist\": \"Abraham Mateo, Manuel Turizo\",\n\t\"url\": \"https://open.spotify.com/track/5NJSLryp5WviTmppF33Peg\",\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/b7f90fc9-78b5-442b-ad35-5e46e4667866/tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/b7f90fc9-78b5-442b-ad35-5e46e4667866/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"b7f90fc9-78b5-442b-ad35-5e46e4667866",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/b7f90fc9-78b5-442b-ad35-5e46e4667866/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Beat It\",\n\t\"artist\": \"Fall Out Boy, John Mayer\",\n\t\"url\": \"https://open.spotify.com/track/4OMsAnt8JSBctSJQIMNAy1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/b7f90fc9-78b5-442b-ad35-5e46e4667866/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"b7f90fc9-78b5-442b-ad35-5e46e4667866",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/b7f90fc9-78b5-442b-ad35-5e46e4667866/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"High Hopes\",\n\t\"artist\": \"Panic! At The Disco\",\n\t\"url\": \"https://open.spotify.com/track/1rqqCSm0Qe4I9rUvWncaom\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/b7f90fc9-78b5-442b-ad35-5e46e4667866/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"b7f90fc9-78b5-442b-ad35-5e46e4667866",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/b7f90fc9-78b5-442b-ad35-5e46e4667866/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"High Hopes\",\n\t\"artist\": \"Panic! At The Disco\",\n\t\"url\": \"https://open.spotify.com/track/1rqqCSm0Qe4I9rUvWncaom\"\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/b7f90fc9-78b5-442b-ad35-5e46e4667866/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"b7f90fc9-78b5-442b-ad35-5e46e4667866",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/Reggaeton/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Tusa\",\n\t\"artist\": \"Karol G\",\n\t\"url\": \"https://open.spotify.com/track/7k4t7uLgtOxPwTpFmtJNTY\"\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/Reggaeton/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"Reggaeton",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=reggaeton",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=reggaeton",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "reggaeton"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=reggaetono",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=reggaetono",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "reggaetono"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Tusa\",\n\t\"artist\": \"Karol G\",\n\t\"url\": \"https://open.spotify.com/track/7k4t7uLgtOxPwTpFmtJNTY\"\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Tusa\"\n\t\"artist\": \"Karol G\"\n\t\"url\": \"https://open.spotify.com/track/7k4t7uLgtOxPwTpFmtJNTY\"\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Tusa\",\n\t\"artist\": \"Karol G\",\n\t\"url\": \"https://open.spotify.com/track/7k4t7uLgtOxPwTpFmtJNTY\"\n\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Tusa\",\n\t\"artist\": \"Karol G\",\n\t\"url\": \"https://open.spotify.com/track/7k4t7uLgtOxPwTpFmtJNTY\",\n\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Tusa\",\n\t\"artist\": \"Karol G\",\n\t\"url\": \"https://open.spotify.com/track/7k4t7uLgtOxPwTpFmtJNTY\",\n\n    \"name\": \"No Encuentro Palabras\",\n\t\"artist\": \"Abraham Mateo, Manuel Turizo\",\n\t\"url\": \"https://open.spotify.com/track/5NJSLryp5WviTmppF33Peg\",\n\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"Tusa\",\n\t\"artist\": \"Karol G\",\n\t\"url\": \"https://open.spotify.com/track/7k4t7uLgtOxPwTpFmtJNTY\",\n\n    \"name\": \"No Encuentro Palabras\",\n\t\"artist\": \"Abraham Mateo, Manuel Turizo\",\n\t\"url\": \"https://open.spotify.com/track/5NJSLryp5WviTmppF33Peg\",\n\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:bc551c99-9100-4b77-af33-9c60b8408597/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						":bc551c99-9100-4b77-af33-9c60b8408597",
+						"tracks"
+					],
+					"variable": [
+						{
+							"key": "bc551c99-9100-4b77-af33-9c60b8408597",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=string",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=string",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "string"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=pop",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=pop",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "pop"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": [ \"teste01\", \"teste02\", \"teste03\" ] \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Rock\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Pop\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Reggaeton\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Reggaeton\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Reggaeton\",\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Reggaeton\",\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						":playlistId"
+					],
+					"variable": [
+						{
+							"key": "playlistId",
+							"value": "247e3159-ac9f-491e-8eac-3ee4027681d8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId/tracks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n\t\"name\": \"string\",\n\t\"artist\": \"string\",\n\t\"url\": \"string\"\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						":playlistId",
+						"tracks"
+					],
+					"variable": [
+						{
+							"key": "playlistId",
+							"value": "027f1eaf-3d07-46cf-aab3-7064d5935d80"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"string\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId/tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/:playlistId/tracks",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						":playlistId",
+						"tracks"
+					],
+					"variable": [
+						{
+							"key": "playlistId",
+							"value": "027f1eaf-3d07-46cf-aab3-7064d5935d80"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=string",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "guilherme-emanuell-dumont"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/search?name=string",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "string"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "guilherme-emanuell-dumont",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "nome-sobrenome-turma",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "\"nome-sobrenome-turma\"",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"result\": {\r\n        \"quantity\": \"number\",\r\n        \"list\": [\r\n            {\r\n                \"id\": \"string\",\r\n                \"name\": \"string\"\r\n            }\r\n        ]\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+					"protocol": "https",
+					"host": [
+						"us-central1-labenu-apis",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"labefy",
+						"playlists"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "939a34dc-0fb6-4b0a-a2a6-713de0259f2d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "95f7ec77-82ff-4383-9ff2-dab176303882",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
